@@ -1,17 +1,11 @@
 {
-  "name": "IHK Audit PWA",
-  "short_name": "IHK Audit",
-  "start_url": "./",
-  "display": "standalone",
-  "background_color": "#eef3f0",
-  "theme_color": "#123b2a",
-  "lang": "ms",
-  "icons": [
-    {
-      "src": "icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
-  ]
+  "name":"IHK Audit PWA",
+  "short_name":"IHK Audit",
+  "description":"Food Safety Inspection & Risk-Based Compliance",
+  "start_url":"./",
+  "scope":"./",
+  "display":"standalone",
+  "background_color":"#f7fbf9",
+  "theme_color":"#0b5a46",
+  "icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
 }

@@ -1,10 +1,165 @@
-<!doctype html><html lang="ms"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#123b2a"><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css"><title>IHK Audit PWA</title></head><body>
-<header><div><b>IHK AUDIT</b><span id="net">● online</span></div><button id="installBtn" hidden>Pasang App</button></header>
-<main class="wrap">
-<section id="home" class="view"><h1>Pilih Program Pemeriksaan</h1><p class="muted">Menu dan checklist akan berubah mengikut program.</p><div class="programs"><button data-program="MeSTI">MeSTI</button><button data-program="GMP" class="coming">GMP</button><button data-program="BeSS" class="coming">BeSS</button></div><div class="card"><h3>Audit Belum Selesai</h3><div id="draftInfo">Tiada draf.</div></div></section>
-<section id="audit" class="view hidden"><div class="toprow"><button id="backHome" class="light">← Program</button><div><b id="programTitle">MeSTI</b><div class="muted" id="progressText"></div></div><button id="saveBtn">Simpan</button></div><div class="progress"><span id="progressBar"></span></div>
-<div class="card meta"><div class="grid"><label>Premis<input id="premis"></label><label>Tarikh<input id="tarikh" type="date"></label><label>Auditor<input id="auditor"></label><label>Jenis Pemeriksaan<select id="jenis"><option>Rutin</option><option>Susulan</option><option>Aduan</option><option>Lain-lain</option></select></label></div></div>
-<div id="sections"></div></section>
-<section id="finding" class="drawer hidden"><div class="drawerbox"><button id="closeFinding" class="light">✕ Tutup</button><h2 id="findingCode"></h2><p id="findingQ"></p><div class="statusrow"><button data-st="Patuh">✓ Patuh</button><button data-st="Tidak Patuh" class="danger">✕ Tidak Patuh</button><button data-st="N/A" class="light">N/A</button></div><label>Penemuan / Bukti<textarea id="findingNote"></textarea></label><div id="npBlock" class="hidden"><label>Risk Based Item<select id="riskSelect"><option value="">-- pilih jika berkaitan --</option></select></label><label>Rujukan PPKM 2009<select id="legalSelect" multiple size="5"></select></label><label>Jenis Teguran/Arahan<select id="directiveType"><option>Teguran</option><option>Arahan Pembersihan</option><option>Arahan Pembetulan</option><option>Arahan Pembersihan & Pembetulan</option></select></label><label>Arahan / tindakan dikehendaki<textarea id="directiveText"></textarea></label><div class="grid"><label>Tempoh<select id="duePreset"><option value="0">Serta-merta</option><option value="1">24 jam</option><option value="3">3 hari</option><option value="7">7 hari</option><option value="14">14 hari</option><option value="30">30 hari</option><option value="custom">Tarikh khusus</option></select></label><label>Tarikh akhir<input type="date" id="dueDate"></label><label>Tarikh susulan<input type="date" id="followDate"></label></div><label><input type="checkbox" id="section10"> Punca kuasa arahan pembersihan: Seksyen 10(1), Akta Makanan 1983 — semak kesesuaian sebelum keluarkan arahan rasmi.</label></div><div class="bar"><button id="saveFinding">Simpan Penemuan</button></div></div></section>
-<section id="summary" class="view hidden"></section>
-</main><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b5a46">
+  <meta name="description" content="IHK Audit PWA - platform pemeriksaan keselamatan makanan, risk-based review, arahan pembetulan dan susulan.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/css/app.css">
+  <title>IHK Audit PWA</title>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brandrow">
+      <button class="iconbtn mobile-only" id="menuBtn" aria-label="Menu">☰</button>
+      <div class="brandmark">IHK</div>
+      <div>
+        <div class="brandtitle">IHK Audit PWA</div>
+        <div class="online"><span id="netDot" class="dot"></span><span id="netText">online</span></div>
+      </div>
+    </div>
+    <div class="topactions">
+      <button class="iconbtn" title="Notifikasi">🔔<span class="notifdot"></span></button>
+      <button class="install" id="installBtn" hidden>⇩ Pasang App</button>
+      <div class="profile desktop-only"><span class="avatar">AM</span><span>Auditor</span><span>⌄</span></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section id="view-home" class="view active">
+      <div class="shell">
+        <section class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow">SELAMAT DATANG</div>
+            <h1>IHK Audit PWA</h1>
+            <p class="hero-sub">Food Safety Inspection & Risk-Based Compliance</p>
+            <div class="wave"></div>
+            <p class="hero-tag">Makanan Selamat · Rakyat Sihat · Negara Sejahtera</p>
+          </div>
+          <div class="hero-art">
+            <div class="govcard">
+              <div class="crest">⚕</div>
+              <div><b>Keselamatan Makanan</b><br><span>Tanggungjawab Bersama</span></div>
+            </div>
+            <div class="skyline">▂▃▅▂▆▃▇▅▂▃▆▂</div>
+          </div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-title-row">
+            <div><h2>Pilih Program Pemeriksaan</h2><p>Pilih modul program yang ingin diaudit.</p></div>
+            <button class="linkbtn" data-nav="program">Lihat Semua Program ›</button>
+          </div>
+          <div class="program-grid">
+            <button class="program-card" data-program="MeSTI">
+              <span class="program-logo mesti">MeSTI</span><span><b>MeSTI</b><small>Makanan Selamat Tanggungjawab Industri</small></span><i>›</i>
+            </button>
+            <button class="program-card" data-program="GMP">
+              <span class="program-logo gmp">GMP</span><span><b>GMP</b><small>Amalan Pengilangan Baik</small></span><i>›</i>
+            </button>
+            <button class="program-card" data-program="BeSS">
+              <span class="program-logo bess">☘</span><span><b>BeSS</b><small>Bersih, Selamat dan Sihat</small></span><i>›</i>
+            </button>
+            <button class="program-card" data-program="HACCP">
+              <span class="program-logo haccp">HACCP</span><span><b>HACCP</b><small>Analisis Bahaya & Kawalan Titik Kritikal</small></span><i>›</i>
+            </button>
+          </div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-title-row"><div><h2>Tindakan Pantas</h2><p>Akses fungsi utama dengan cepat.</p></div></div>
+          <div class="quick-grid">
+            <button class="quick-card green" data-action="new"><span class="quickicon">＋</span><span><b>Audit Baharu</b><small>Mula pemeriksaan baharu</small></span><i>›</i></button>
+            <button class="quick-card blue" data-nav="audits"><span class="quickicon">▤</span><span><b>Audit Saya</b><small>Lihat senarai audit semasa</small></span><i>›</i></button>
+            <button class="quick-card blue" data-nav="followups"><span class="quickicon">▣</span><span><b>Susulan</b><small>Tindakan susulan audit</small></span><i>›</i></button>
+            <button class="quick-card blue" data-nav="reports"><span class="quickicon">▥</span><span><b>Laporan</b><small>Laporan dan statistik</small></span><i>›</i></button>
+          </div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-title-row"><div><h2>Ringkasan</h2><p>Status audit dan tindakan semasa.</p></div><button class="linkbtn" data-nav="audits">Lihat Semua ›</button></div>
+          <div class="stats-grid">
+            <button class="stat-card" data-nav="audits"><span class="stat-icon folder">▰</span><span><strong id="statOpen">0</strong><b>Open Audit</b><small>Pemeriksaan sedang dijalankan</small></span><i>›</i></button>
+            <button class="stat-card danger" data-nav="directives"><span class="stat-icon">!</span><span><strong id="statDirectives">0</strong><b>Arahan Aktif</b><small>Tindakan pembetulan diperlukan</small></span><i>›</i></button>
+            <button class="stat-card info" data-nav="followups"><span class="stat-icon">▣</span><span><strong id="statFollowups">0</strong><b>Susulan Hari Ini</b><small>Pemeriksaan susulan dijadualkan</small></span><i>›</i></button>
+          </div>
+        </section>
+
+        <footer class="landscape"><span>Makanan Selamat · Rakyat Sihat · Negara Sejahtera</span></footer>
+      </div>
+    </section>
+
+    <!-- PROGRAM / NEW AUDIT -->
+    <section id="view-program" class="view">
+      <div class="shell narrow">
+        <div class="pagehead"><button class="back" data-nav="home">←</button><div><span class="eyebrow">AUDIT BAHARU</span><h2>Pilih Program & Jenis Pemeriksaan</h2></div></div>
+        <div class="stepper"><span class="on">1 <small>Program</small></span><span>2 <small>Jenis Audit</small></span><span>3 <small>Mula Audit</small></span></div>
+        <div class="program-grid selectable" id="programPicker"></div>
+        <div class="card"><h3>Pilih Jenis Pemeriksaan</h3><div class="audit-type-grid" id="auditTypePicker">
+          <button data-type="Rutin" class="selected"><b>▤ Rutin</b><small>Pemeriksaan berkala</small></button>
+          <button data-type="Pensijilan"><b>★ Pensijilan</b><small>Penilaian pensijilan</small></button>
+          <button data-type="Susulan"><b>↻ Susulan</b><small>Verifikasi arahan</small></button>
+          <button data-type="Verifikasi"><b>⌕ Verifikasi</b><small>Pengesahan pembetulan</small></button>
+        </div></div>
+        <button class="primary wide" id="continueAuditBtn">Seterusnya →</button>
+      </div>
+    </section>
+
+    <!-- AUDIT -->
+    <section id="view-audit" class="view">
+      <div class="shell narrow">
+        <div class="audit-head">
+          <button class="back" data-nav="home">←</button>
+          <div><span class="eyebrow" id="auditProgramLabel">MeSTI</span><h2 id="auditTitle">Pemeriksaan MeSTI</h2><p id="progressText">0%</p></div>
+          <button class="ghost" id="saveDraftBtn">Simpan</button>
+        </div>
+        <div class="progress"><span id="progressBar"></span></div>
+        <div class="card meta-card"><h3>Maklumat Pemeriksaan</h3><div class="form-grid">
+          <label>Premis<input id="premis" placeholder="Nama premis"></label>
+          <label>Tarikh<input id="tarikh" type="date"></label>
+          <label>Auditor<input id="auditor" placeholder="Nama auditor"></label>
+          <label>Jenis Pemeriksaan<select id="jenis"><option>Rutin</option><option>Pensijilan</option><option>Susulan</option><option>Verifikasi</option></select></label>
+        </div></div>
+        <div id="sectionList"></div>
+        <div class="sticky-action"><button class="secondary" data-nav="home">Keluar</button><button class="primary" id="summaryBtn">Rumusan Audit →</button></div>
+      </div>
+    </section>
+
+    <!-- GENERIC LIST -->
+    <section id="view-list" class="view"><div class="shell narrow"><div class="pagehead"><button class="back" data-nav="home">←</button><div><span class="eyebrow" id="listEyebrow">REKOD</span><h2 id="listTitle">Audit Saya</h2></div></div><div id="listContent"></div></div></section>
+
+    <!-- SUMMARY -->
+    <section id="view-summary" class="view"><div class="shell narrow"><div class="pagehead"><button class="back" data-nav="audit">←</button><div><span class="eyebrow">RUMUSAN & SUSULAN</span><h2>Rumusan Pemeriksaan</h2></div></div><div id="summaryContent"></div></div></section>
+  </main>
+
+  <!-- FINDING DRAWER -->
+  <div id="findingDrawer" class="drawer hidden" role="dialog" aria-modal="true">
+    <div class="drawer-panel">
+      <div class="drawer-head"><div><span class="eyebrow">ITEM PEMERIKSAAN</span><h2 id="findingCode"></h2></div><button class="iconbtn dark" id="closeFinding">✕</button></div>
+      <div class="question-card"><span class="risk-chip" id="findingDomain">Checklist</span><p id="findingQ"></p></div>
+      <div class="status-buttons"><button data-status="Patuh" class="pass">✓<span>Patuh</span></button><button data-status="Tidak Patuh" class="fail">✕<span>Tidak Patuh</span></button><button data-status="N/A" class="na">—<span>N/A</span></button></div>
+      <label>Penemuan<textarea id="findingNote" placeholder="Nyatakan penemuan pemeriksaan..."></textarea></label>
+      <label>Bukti / Catatan<textarea id="findingEvidence" placeholder="Dokumen, rekod, foto atau bacaan..."></textarea></label>
+      <label class="upload-box">📷 <b>Tambah Gambar</b><span>Ambil gambar atau pilih fail</span><input id="photoInput" type="file" accept="image/*" multiple hidden></label>
+      <div id="nonComplianceBlock" class="hidden">
+        <div class="subhead">Risk-Based & Rujukan</div>
+        <label>Risk Based Item<select id="riskSelect"></select></label>
+        <label>Rujukan PPKM 2009<select id="legalSelect" multiple size="5"></select></label>
+        <div class="subhead">Arahan / Teguran</div>
+        <div class="directive-choice"><button data-directive="Arahan Pembersihan">🧹<b>Pembersihan</b></button><button data-directive="Arahan Pembetulan">🔧<b>Pembetulan</b></button></div>
+        <label>Tindakan Dikehendaki<textarea id="directiveText" placeholder="Nyatakan tindakan yang perlu diambil..."></textarea></label>
+        <div class="form-grid"><label>Tempoh<select id="duePreset"><option value="0">Serta-merta</option><option value="1">24 jam</option><option value="3">3 hari</option><option value="7">7 hari</option><option value="14">14 hari</option><option value="30">30 hari</option><option value="custom">Tarikh khusus</option></select></label><label>Tarikh Akhir<input id="dueDate" type="date"></label><label>Tarikh Susulan<input id="followDate" type="date"></label></div>
+        <label class="check"><input type="checkbox" id="section10"> Pertimbangkan Seksyen 10(1) Akta Makanan 1983 bagi arahan pembersihan, tertakluk pengesahan PDK.</label>
+      </div>
+      <button class="primary wide" id="saveFindingBtn">Simpan Penemuan</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="config.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
