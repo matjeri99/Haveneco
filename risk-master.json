@@ -1,0 +1,198 @@
+[
+  {
+    "risk_id": "RB01",
+    "domain": "Kawalan Proses",
+    "item": 1,
+    "description": "Titik kawalan kritikal (CCP) atau peringkat proses terpenting; kawalan masa/suhu dan kaedah nyahsejuk/penyejukan sesuai",
+    "demerit": 15
+  },
+  {
+    "risk_id": "RB02",
+    "domain": "Kawalan Proses",
+    "item": 2,
+    "description": "Spek pembekal & pemeriksaan fizikal sebelum digunakan",
+    "demerit": 5
+  },
+  {
+    "risk_id": "RB03",
+    "domain": "Kawalan Proses",
+    "item": 3,
+    "description": "Pencemaran silang dikawal menerusi saiz sesuai, rekaan & peralatan",
+    "demerit": 5
+  },
+  {
+    "risk_id": "RB04",
+    "domain": "Bangunan",
+    "item": 4,
+    "description": "Terletak jauh dari punca pencemaran",
+    "demerit": 1
+  },
+  {
+    "risk_id": "RB05",
+    "domain": "Bangunan",
+    "item": 5,
+    "description": "Lantai yang sesuai dan berkeadaan baik",
+    "demerit": 2
+  },
+  {
+    "risk_id": "RB06",
+    "domain": "Bangunan",
+    "item": 6,
+    "description": "Dinding & siling sesuai dan berkeadaan baik",
+    "demerit": 2
+  },
+  {
+    "risk_id": "RB07",
+    "domain": "Bangunan",
+    "item": 7,
+    "description": "Pencahayaan yang mencukupi",
+    "demerit": 1
+  },
+  {
+    "risk_id": "RB08",
+    "domain": "Bangunan",
+    "item": 8,
+    "description": "Pengudaraan yang mencukupi",
+    "demerit": 1
+  },
+  {
+    "risk_id": "RB09",
+    "domain": "Bangunan",
+    "item": 9,
+    "description": "Kit Pertolongan Cemas (First aid)",
+    "demerit": 1
+  },
+  {
+    "risk_id": "RB10",
+    "domain": "Operator Makanan",
+    "item": 10,
+    "description": "Pemeriksaan kesihatan operator/pengendali makanan",
+    "demerit": 2
+  },
+  {
+    "risk_id": "RB11",
+    "domain": "Operator Makanan",
+    "item": 11,
+    "description": "Amalan kebersihan operator termasuk menghalang pesakit bekerja",
+    "demerit": 4
+  },
+  {
+    "risk_id": "RB12",
+    "domain": "Operator Makanan",
+    "item": 12,
+    "description": "Pakaian perlindungan diri operator",
+    "demerit": 3
+  },
+  {
+    "risk_id": "RB13",
+    "domain": "Operator Makanan",
+    "item": 13,
+    "description": "Latihan termasuk rekod",
+    "demerit": 4
+  },
+  {
+    "risk_id": "RB14",
+    "domain": "Peralatan & Perkakas/Kawasan Penyediaan",
+    "item": 14,
+    "description": "Permukaan menyentuh makanan/peralatan direka, dibina, diselenggara, berfungsi, mudah dicuci dan bersih",
+    "demerit": 3
+  },
+  {
+    "risk_id": "RB19",
+    "domain": "Sistem Perparitan & Plumbing",
+    "item": 19,
+    "description": "Sistem pembuangan air limbah yang efektif",
+    "demerit": 1
+  },
+  {
+    "risk_id": "RB20",
+    "domain": "Sistem Perparitan & Plumbing",
+    "item": 20,
+    "description": "Tiada cross-crossing of lines/back-flow",
+    "demerit": 1
+  },
+  {
+    "risk_id": "RB21",
+    "domain": "Sistem Perparitan & Plumbing",
+    "item": 21,
+    "description": "Dipasang dan berfungsi dengan baik",
+    "demerit": 1
+  },
+  {
+    "risk_id": "RB22",
+    "domain": "Fasiliti Sanitari",
+    "item": 22,
+    "description": "Tandas mencukupi, berkeadaan baik dan berfungsi",
+    "demerit": 1
+  },
+  {
+    "risk_id": "RB23",
+    "domain": "Fasiliti Sanitari",
+    "item": 23,
+    "description": "Bilik persalinan & mandi mencukupi",
+    "demerit": 2
+  },
+  {
+    "risk_id": "RB24",
+    "domain": "Fasiliti Sanitari",
+    "item": 24,
+    "description": "Fasiliti pencucian tangan mencukupi dan sesuai",
+    "demerit": 3
+  },
+  {
+    "risk_id": "RB25",
+    "domain": "Pengurusan Sampah",
+    "item": 25,
+    "description": "Bekas/tong sampah bersih dan mencukupi",
+    "demerit": 1
+  },
+  {
+    "risk_id": "RB26",
+    "domain": "Pengurusan Sampah",
+    "item": 26,
+    "description": "Tempat takungan sampah-sarap bersih dan mencukupi",
+    "demerit": 1
+  },
+  {
+    "risk_id": "RB27",
+    "domain": "Kawalan Perosak",
+    "item": 27,
+    "description": "Pengawalan sistem kawalan yang efektif dan lengkap",
+    "demerit": 3
+  },
+  {
+    "risk_id": "RB28",
+    "domain": "Program Pembersihan & Penyelenggaraan Premis",
+    "item": 28,
+    "description": "Pembersihan & penyelenggaraan berjadual termasuk pembuangan peralatan tidak terpakai",
+    "demerit": 1
+  },
+  {
+    "risk_id": "RB29",
+    "domain": "Program Pembersihan & Penyelenggaraan Premis",
+    "item": 29,
+    "description": "Penyimpanan bahan pencuci berasingan dengan makanan",
+    "demerit": 1
+  },
+  {
+    "risk_id": "RB30",
+    "domain": "Pengangkutan & Penghantaran",
+    "item": 30,
+    "description": "Kesempurnaan pembersihan, kawalan suhu dan penyelenggaraan",
+    "demerit": 1
+  },
+  {
+    "risk_id": "RB31",
+    "domain": "Lain-lain Operasi",
+    "item": 31,
+    "description": "Dokumentasi/notis",
+    "demerit": 1
+  },
+  {
+    "risk_id": "RB99",
+    "domain": "Lain-lain Proses Berkaitan Risiko Kesihatan Awam",
+    "item": 99,
+    "description": "Lain-lain proses yang ada kaitan dengan risiko terhadap kesihatan awam",
+    "demerit": 10
+  }
+]

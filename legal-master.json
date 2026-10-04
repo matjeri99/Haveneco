@@ -1,0 +1,66 @@
+[
+  {
+    "reg": "3",
+    "title": "Pendaftaran premis makanan"
+  },
+  {
+    "reg": "7",
+    "title": "Pembaharuan perakuan pendaftaran"
+  },
+  {
+    "reg": "8",
+    "title": "Mempamerkan perakuan/notis"
+  },
+  {
+    "reg": "9",
+    "title": "Program jaminan keselamatan makanan"
+  },
+  {
+    "reg": "10",
+    "title": "Sistem pengesanan makanan"
+  },
+  {
+    "reg": "11",
+    "title": "Tugas am tuan punya/pemunya/penghuni premis"
+  },
+  {
+    "reg": "30",
+    "title": "Latihan pengendali makanan"
+  },
+  {
+    "reg": "31",
+    "title": "Pemeriksaan perubatan dan keadaan kesihatan pengendali"
+  },
+  {
+    "reg": "32",
+    "title": "Pakaian pengendali makanan"
+  },
+  {
+    "reg": "33",
+    "title": "Kebersihan diri pengendali makanan"
+  },
+  {
+    "reg": "34",
+    "title": "Kewajipan mengekalkan premis makanan bersih"
+  },
+  {
+    "reg": "35",
+    "title": "Pengendali makanan, perkakas dsb."
+  },
+  {
+    "reg": "36",
+    "title": "Penyediaan, pembungkusan dan penghidangan makanan"
+  },
+  {
+    "reg": "37",
+    "title": "Penyimpanan, pendedahan dan pameran makanan untuk dijual"
+  },
+  {
+    "reg": "38",
+    "title": "Penyimpanan makanan"
+  },
+  {
+    "reg": "56",
+    "title": "Pengangkutan makanan"
+  }
+]

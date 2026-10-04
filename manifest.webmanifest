@@ -1,0 +1,17 @@
+{
+  "name": "IHK Audit PWA",
+  "short_name": "IHK Audit",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#eef3f0",
+  "theme_color": "#123b2a",
+  "lang": "ms",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
