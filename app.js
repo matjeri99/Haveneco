@@ -1,4 +1,4 @@
-const API_URL='PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
+const API_URL='https://script.google.com/macros/s/AKfycbwU7DXGgMMWj1UqWtl2Izap8a8Bg7ulRIwgRssqIW9IXhdDMNATTNIaDlpC2-aN4GXw/exec';
 const state={program:null,checklist:[],risk:[],legal:[],responses:{},current:null,meta:{}};
 const $=x=>document.getElementById(x); const views=['home','audit','summary'];
 function show(id){views.forEach(v=>$(v)?.classList.toggle('hidden',v!==id))}
