@@ -6,13 +6,16 @@
   <meta name="theme-color" content="#0b5a46">
   <meta name="description" content="IHK Audit PWA - platform pemeriksaan keselamatan makanan, risk-based review, arahan pembetulan dan susulan.">
   <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="IHK Audit">
   <link rel="stylesheet" href="assets/css/app.css">
   <title>IHK Audit PWA</title>
 </head>
 <body>
   <header class="topbar">
     <div class="brandrow">
-      <button class="iconbtn mobile-only" id="menuBtn" aria-label="Menu">☰</button>
       <div class="brandmark">IHK</div>
       <div>
         <div class="brandtitle">IHK Audit PWA</div>
@@ -20,7 +23,7 @@
       </div>
     </div>
     <div class="topactions">
-      <button class="iconbtn" title="Notifikasi">🔔<span class="notifdot"></span></button>
+      <button class="iconbtn" id="notifBtn" title="Arahan & susulan" aria-label="Arahan dan susulan">🔔<span class="notifdot hidden" id="notifDot"></span></button>
       <button class="install" id="installBtn" hidden>⇩ Pasang App</button>
       <div class="profile desktop-only"><span class="avatar">AM</span><span>Auditor</span><span>⌄</span></div>
     </div>
@@ -54,16 +57,16 @@
           </div>
           <div class="program-grid">
             <button class="program-card" data-program="MeSTI">
-              <span class="program-logo mesti">MeSTI</span><span><b>MeSTI</b><small>Makanan Selamat Tanggungjawab Industri</small></span><i>›</i>
+              <span class="program-logo"><img src="assets/img/logo-mesti.webp" alt="Logo MeSTI" width="128" height="64"></span><span><b>MeSTI</b><small>Makanan Selamat Tanggungjawab Industri</small></span><i>›</i>
             </button>
             <button class="program-card" data-program="GMP">
-              <span class="program-logo gmp">GMP</span><span><b>GMP</b><small>Amalan Pengilangan Baik</small></span><i>›</i>
+              <span class="program-logo"><img src="assets/img/logo-gmp.webp" alt="Logo GMP" width="64" height="64"></span><span><b>GMP</b><small>Amalan Pengilangan Baik</small></span><i>›</i>
             </button>
             <button class="program-card" data-program="BeSS">
-              <span class="program-logo bess">☘</span><span><b>BeSS</b><small>Bersih, Selamat dan Sihat</small></span><i>›</i>
+              <span class="program-logo"><img src="assets/img/logo-bess.webp" alt="Logo BeSS" width="62" height="64"></span><span><b>BeSS</b><small>Bersih, Selamat dan Sihat</small></span><i>›</i>
             </button>
             <button class="program-card" data-program="HACCP">
-              <span class="program-logo haccp">HACCP</span><span><b>HACCP</b><small>Analisis Bahaya & Kawalan Titik Kritikal</small></span><i>›</i>
+              <span class="program-logo"><img src="assets/img/logo-haccp.webp" alt="Logo HACCP" width="62" height="64"></span><span><b>HACCP</b><small>Analisis Bahaya & Kawalan Titik Kritikal</small></span><i>›</i>
             </button>
           </div>
         </section>
@@ -123,7 +126,7 @@
           <label>Jenis Pemeriksaan<select id="jenis"><option>Rutin</option><option>Pensijilan</option><option>Susulan</option><option>Verifikasi</option></select></label>
         </div></div>
         <div id="sectionList"></div>
-        <div class="sticky-action"><button class="secondary" data-nav="home">Keluar</button><button class="primary" id="summaryBtn">Rumusan Audit →</button></div>
+        <div class="sticky-action"><button class="secondary" id="exitAuditBtn">Keluar</button><button class="primary" id="summaryBtn">Rumusan Audit →</button></div>
       </div>
     </section>
 
@@ -131,7 +134,7 @@
     <section id="view-list" class="view"><div class="shell narrow"><div class="pagehead"><button class="back" data-nav="home">←</button><div><span class="eyebrow" id="listEyebrow">REKOD</span><h2 id="listTitle">Audit Saya</h2></div></div><div id="listContent"></div></div></section>
 
     <!-- SUMMARY -->
-    <section id="view-summary" class="view"><div class="shell narrow"><div class="pagehead"><button class="back" data-nav="audit">←</button><div><span class="eyebrow">RUMUSAN & SUSULAN</span><h2>Rumusan Pemeriksaan</h2></div></div><div id="summaryContent"></div></div></section>
+    <section id="view-summary" class="view"><div class="shell narrow"><div class="pagehead"><button class="back" id="summaryBack" data-nav="audit">←</button><div><span class="eyebrow">RUMUSAN & SUSULAN</span><h2>Rumusan Pemeriksaan</h2></div></div><div id="summaryContent"></div></div></section>
   </main>
 
   <!-- FINDING DRAWER -->
@@ -143,14 +146,15 @@
       <label>Penemuan<textarea id="findingNote" placeholder="Nyatakan penemuan pemeriksaan..."></textarea></label>
       <label>Bukti / Catatan<textarea id="findingEvidence" placeholder="Dokumen, rekod, foto atau bacaan..."></textarea></label>
       <label class="upload-box">📷 <b>Tambah Gambar</b><span>Ambil gambar atau pilih fail</span><input id="photoInput" type="file" accept="image/*" multiple hidden></label>
+      <div id="photoList" class="photo-list"></div>
       <div id="nonComplianceBlock" class="hidden">
         <div class="subhead">Risk-Based & Rujukan</div>
         <label>Risk Based Item<select id="riskSelect"></select></label>
-        <label>Rujukan PPKM 2009<select id="legalSelect" multiple size="5"></select></label>
+        <label>Rujukan PPKM 2009</label><div id="legalList" class="legal-list"></div>
         <div class="subhead">Arahan / Teguran</div>
         <div class="directive-choice"><button data-directive="Arahan Pembersihan">🧹<b>Pembersihan</b></button><button data-directive="Arahan Pembetulan">🔧<b>Pembetulan</b></button></div>
         <label>Tindakan Dikehendaki<textarea id="directiveText" placeholder="Nyatakan tindakan yang perlu diambil..."></textarea></label>
-        <div class="form-grid"><label>Tempoh<select id="duePreset"><option value="0">Serta-merta</option><option value="1">24 jam</option><option value="3">3 hari</option><option value="7">7 hari</option><option value="14">14 hari</option><option value="30">30 hari</option><option value="custom">Tarikh khusus</option></select></label><label>Tarikh Akhir<input id="dueDate" type="date"></label><label>Tarikh Susulan<input id="followDate" type="date"></label></div>
+        <div class="form-grid"><label>Tempoh<select id="duePreset"><option value="">-- pilih --</option><option value="0">Serta-merta</option><option value="1">24 jam</option><option value="3">3 hari</option><option value="7">7 hari</option><option value="14">14 hari</option><option value="30">30 hari</option><option value="custom">Tarikh khusus</option></select></label><label>Tarikh Akhir<input id="dueDate" type="date"></label><label>Tarikh Susulan<input id="followDate" type="date"></label></div>
         <label class="check"><input type="checkbox" id="section10"> Pertimbangkan Seksyen 10(1) Akta Makanan 1983 bagi arahan pembersihan, tertakluk pengesahan PDK.</label>
       </div>
       <button class="primary wide" id="saveFindingBtn">Simpan Penemuan</button>
